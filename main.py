@@ -1,3 +1,4 @@
+import ctypes.util
 import os
 import discord
 import asyncio
@@ -6,17 +7,17 @@ import time
 from discord.ext import commands
 from discord.utils import get
 from gtts import gTTS
+import opuslib
 
 file = open("pass.txt")
 TOKEN = file.readline()
 
 # Set the timezone to German timezone with respect to DST
 os.environ['TZ'] = "UTC-01UTC-02,M3.5.0,M10.5.0"
-
+time.tzset()
 
 # Duh
 bot = commands.Bot(command_prefix="$")
-
 
 # Let you know when the discord bot is online and ready to work
 @bot.event
