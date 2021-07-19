@@ -70,7 +70,7 @@ async def disconnectBot(botVoice):
 async def pauseIfPlaying(botVoice):
     """
     Waits until bot is done playing to continue with code exicution. If this is left out bot could possibly leave before
-     playing any audio
+    playing any audio
     :param botVoice: discord command.Bot object
     """
     while botVoice.is_playing():
@@ -90,14 +90,9 @@ async def playMp3(botVoice,fileName = "default"):
         print("This file does not exist. :(")
 
 
-setTimeZone()
-
-
-
 # Duh
+setTimeZone()
 bot = commands.Bot(command_prefix="$")
-
-
 
 
 # Let you know when the discord bot is online and ready to work
@@ -105,17 +100,17 @@ bot = commands.Bot(command_prefix="$")
 async def on_ready():
     print(f"We have logged in as {bot.user} bot")
 
+
 # Allows for message handeling
 @bot.command(pass_context=True, aliases=["germ", "g"])
 async def germany(ctx):
     # Time in Germany
-    now = getUTCTime()
+    now = await getUTCTime()
 
     # Formatted Time in Germany
-    nowDateTimeText = formatGivenTime(now,textOrTTS = True)
-    nowDateTimeTTS = formatGivenTime(now, textOrTTS=False)
+    nowDateTimeText = await formatGivenTime(now,textOrTTS = True)
+    nowDateTimeTTS = await formatGivenTime(now, textOrTTS=False)
     fileName = "time"
-
 
     if ctx.message.author.voice == None:
         await ctx.send(f"It is currently {nowDateTimeText} in Germany")
@@ -142,12 +137,6 @@ async def germany(ctx):
 
         # leaves the channel
         await disconnectBot(voice)
-
-
-
-    #except AttributeError:
-    #    await ctx.send(f"It is currently {nowDateTime} in Germany")
-    #return
 
 
 # Start connection with discordbot and main.py
