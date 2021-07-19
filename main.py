@@ -7,13 +7,12 @@ from discord.ext import commands
 from discord.utils import get
 from gtts import gTTS
 
+file = open("pass.txt")
+TOKEN = file.readline()
 
 # Set the timezone to German timezone with respect to DST
 os.environ['TZ'] = "UTC-01UTC-02,M3.5.0,M10.5.0"
-time.tzset()
 
-# Allows for passing of token without revealing it
-TOKEN = os.environ["TOKEN"]
 
 # Duh
 bot = commands.Bot(command_prefix="$")
