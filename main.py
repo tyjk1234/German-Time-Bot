@@ -10,7 +10,7 @@ from gtts import gTTS
 from pathlib import Path
 import opuslib
 
-file = open("pass2.txt")
+file = open("pass.txt")
 TOKEN = file.readline()
 
 # Set the timezone to German timezone with respect to DST
