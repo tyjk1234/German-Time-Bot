@@ -20,7 +20,7 @@ TOKEN = file.readline()
 # Duh
 timeActivityType = discord.CustomActivity(name = "timeInGermany")
 setTimeZone()
-bot = commands.Bot(command_prefix="$", activity = discor)
+bot = commands.Bot(command_prefix="$")
 
 
 
