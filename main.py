@@ -23,8 +23,10 @@ file = open("pass.txt")
 TOKEN = file.readline()
 
 # Duh
+timeActivityType = discord.CustomActivity(name = "timeInGermany")
 setTimeZone()
 bot = commands.Bot(command_prefix="$")
+
 
 
 # Let you know when the discord bot is online and ready to work
@@ -78,6 +80,34 @@ async def germany(ctx):
         # Leaves the channel
         await disconnectBot(voice)
 
+
+@bot.command(pass_context=True, aliases=["FREEDOM","freedom!","FREEDOM!"])
+async def freedom(ctx):
+    fileName = "freedom"
+
+    if ctx.message.author.voice == None:
+        await ctx.send(f"It is currently {nowDateTimeText} in Germany")
+    else:
+        channel = ctx.message.author.voice.channel
+        voice = get(bot.voice_clients, guild=ctx.guild)
+        # joins the channel
+        if voice and voice.is_connected():
+            await voice.move_to(channel)
+        else:
+            voice = await channel.connect()
+
+        # is the bot already in the channel playing music?
+        if not voice.is_playing():
+            await playMp3(voice,fileName)
+        elif voice and voice.is_connected():
+            await ctx.send("I'm already giving you FREEDOM!")
+        else:
+            print("not playing, but in voice")
+
+        await pauseIfPlaying(voice)
+
+        # leaves the channel
+        await disconnectBot(voice)
 
 # Start connection with discordbot and main.py
 bot.run(TOKEN)
