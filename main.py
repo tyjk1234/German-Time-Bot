@@ -29,13 +29,13 @@ async def on_ready():
 
 
 # Allows for message handeling
-@bot.command(pass_context=True, aliases=["germ", "g","G","GERMANY","GERM"])
+@bot.command(pass_context=True, aliases=["germ","g","G","GERMANY","GERM"])
 async def germany(ctx):
     # Time in Germany
     now = await getUTCTime()
 
     # Formatted Time in Germany
-    nowDateTimeText = await formatGivenTime(now,textOrTTS = True)
+    nowDateTimeText = await formatGivenTime(now, textOrTTS = True)
     nowDateTimeTTS = await formatGivenTime(now, textOrTTS=False)
     fileName = "time"
 
