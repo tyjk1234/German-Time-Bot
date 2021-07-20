@@ -18,7 +18,7 @@ async def getUTCTime():
     """
     return time.localtime()
 
-#
+
 async def formatGivenTime(dateAndTime, textOrTTS = True):
     """:
     textOrTTS should be True for text or False for TTS
