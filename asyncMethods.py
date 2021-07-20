@@ -23,7 +23,7 @@ async def formatGivenTime(dateAndTime, textOrTTS = True):
     """:
     textOrTTS should be True for text or False for TTS
     """
-    formattedDateAndTime = time.strftime("%I:%M %p on %a %b %d %Y", dateAndTime)
+    formattedDateAndTime = time.strftime("%I:%M %p", dateAndTime)
     if textOrTTS:
         return formattedDateAndTime
     else:
