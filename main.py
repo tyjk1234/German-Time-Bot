@@ -13,7 +13,7 @@ from discord.utils import get
 from gtts import gTTS
 from pathlib import Path
 
-#get the secret token :O
+# Get the secret token :O
 file = open("pass.txt")
 TOKEN = file.readline()
 
@@ -28,7 +28,7 @@ async def on_ready():
     print(f"We have logged in as {bot.user} bot")
 
 
-# Allows for message handling
+# Allows for $germany command handling
 @bot.command(pass_context=True, aliases=["germ","g","G","GERMANY","GERM"])
 async def germany(ctx):
     # Time in Germany
@@ -39,36 +39,38 @@ async def germany(ctx):
     nowDateTimeTTS = await formatGivenTime(now, textOrTTS=False)
     fileName = "time"
 
-    #Is the user not in a voice channel?
+    # Is the user not in a voice channel?
     if ctx.message.author.voice == None:
-        #send the time in text
+        # Send the time in text
         await ctx.send(f"It is currently {nowDateTimeText} in Germany")
     else:
-        #send the time in TTS
+        # Send the time in TTS
         channel = ctx.message.author.voice.channel
         voice = get(bot.voice_clients, guild=ctx.guild)
-        # joins the channel
+        # Is the bot active and is it in a channel?
         if voice and voice.is_connected():
+            # Move to ctx channel
             await voice.move_to(channel)
         else:
+            # Connect to ctx channel
             voice = await channel.connect()
 
-        # is the bot not playing anything?
+        # Is the bot not playing anything?
         if not voice.is_playing():
-        #generate TTS and play it
+            # Generate TTS and play it
             await generateTTS(nowDateTimeTTS,fileName)
             await playMp3(voice,fileName)
-        #bot is already playing something
+        # Bot is already playing something
         elif voice and voice.is_connected():
             await ctx.send("I'm already giving the time!")
-        #bot isn't playing anything, but they are in the channel, shouldn't happen
+        # Bot isn't playing anything, but they are in the channel, shouldn't happen
         else:
             print("not playing, but in voice")
 
-        #make sure the whole audio file is played
+        # Make sure the whole audio file is played
         await pauseIfPlaying(voice)
 
-        # leaves the channel
+        # Leaves the channel
         await disconnectBot(voice)
 
 
