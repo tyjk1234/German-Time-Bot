@@ -1,3 +1,8 @@
+# Author: Tyler J. Knudtson
+# Date: 20-Jul-2021
+# Description: Discord bot that tells you the time in Germany
+# either by joining the channel and using voice chat
+# or by sending it in text
 import ctypes.util
 import os
 import discord
