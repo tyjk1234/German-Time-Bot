@@ -44,7 +44,6 @@ async def germany(ctx):
     else:
         channel = ctx.message.author.voice.channel
         voice = get(bot.voice_clients, guild=ctx.guild)
-        voice.Activity(type = "Time in Germany", name = nowDateTimeText)
         # joins the channel
         if voice and voice.is_connected():
             await voice.move_to(channel)
