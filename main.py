@@ -69,7 +69,7 @@ async def germany(ctx):
 
 @bot.command(pass_context=True, aliases=["FREEDOM","freedom!","FREEDOM!"])
 async def freedom(ctx):
-    fileName = "freedom.mp3"
+    fileName = "freedom"
 
     if ctx.message.author.voice == None:
         await ctx.send(f"It is currently {nowDateTimeText} in Germany")
