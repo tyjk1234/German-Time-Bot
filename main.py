@@ -6,7 +6,7 @@ import nacl
 import time
 import opuslib
 from methods import setTimeZone
-from asyncMethods import getUTCTime, formateGivenTime, generateTTS
+from asyncMethods import getUTCTime, formatGivenTime, generateTTS
 from asyncMethods import disconnectBot, pauseIfPlaying, playMp3
 from discord.ext import commands
 from discord.utils import get
